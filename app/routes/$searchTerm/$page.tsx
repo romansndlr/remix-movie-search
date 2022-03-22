@@ -73,6 +73,6 @@ export function CatchBoundary() {
   return <h2>We couldn't find movies for {params?.searchTerm}</h2>
 }
 
-export function ErrorBoundry() {
+export function ErrorBoundary() {
   return <h2>Something went wrong...</h2>
 }
