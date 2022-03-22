@@ -9,7 +9,7 @@ export const action: ActionFunction = async ({ request }) => {
     throw json({ searchTerm }, 404)
   }
 
-  return redirect(encodeURI(`/${searchTerm}/1`))
+  return redirect(`/${encodeURIComponent(searchTerm)}/1`)
 }
 
 export default function Home() {
