@@ -33,7 +33,6 @@ export default function App() {
       <body>
         <header>
           <h1>Movie Search</h1>
-          <p>Search for any movie you like!</p>
           <MoviesForm />
         </header>
         <main>

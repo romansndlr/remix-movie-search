@@ -1,13 +1,5 @@
 import axios from 'axios'
-import {
-  ActionFunction,
-  HeadersFunction,
-  json,
-  LoaderFunction,
-  redirect,
-  useLoaderData,
-  useParams,
-} from 'remix'
+import { HeadersFunction, json, LoaderFunction, useLoaderData } from 'remix'
 import MoviesPagination from '~/components/movies-pagination'
 import MoviesTable from '~/components/movies-table'
 
@@ -30,9 +22,7 @@ export const loader: LoaderFunction = async ({ params }) => {
   )
 
   if (movies.data.length === 0) {
-    throw new Response('Not Found', {
-      status: 404,
-    })
+    throw json({ searchTerm: params?.searchTerm }, 404)
   }
 
   return json(movies, {
@@ -40,14 +30,6 @@ export const loader: LoaderFunction = async ({ params }) => {
       'Cache-Control': 'private, max-age=600000',
     },
   })
-}
-
-export const action: ActionFunction = async ({ request }) => {
-  const formData = await request.formData()
-
-  const { searchTerm } = Object.fromEntries(formData.entries())
-
-  return redirect(`/${searchTerm}/1`)
 }
 
 export let headers: HeadersFunction = ({ loaderHeaders }) => {
@@ -65,14 +47,4 @@ export default function SearchTermIndex() {
       <MoviesTable movies={movies.data} />
     </>
   )
-}
-
-export function CatchBoundary() {
-  const params = useParams()
-
-  return <h2>We couldn't find movies for {params?.searchTerm}</h2>
-}
-
-export function ErrorBoundary() {
-  return <h2>Something went wrong...</h2>
 }
