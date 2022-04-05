@@ -1,4 +1,5 @@
 import {
+  Link,
   Links,
   LinksFunction,
   LiveReload,
@@ -32,7 +33,9 @@ export default function App() {
       </head>
       <body>
         <header>
-          <h1>Movie Search</h1>
+          <h1>
+            <Link to="/">Movie Search</Link>
+          </h1>
           <MoviesForm />
         </header>
         <main>
