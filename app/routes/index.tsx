@@ -1,11 +1,6 @@
 import axios from 'axios'
-import {
-  HeadersFunction,
-  json,
-  LoaderFunction,
-  useCatch,
-  useLoaderData,
-} from 'remix'
+import type { HeadersFunction, LoaderFunction } from 'remix'
+import { json, useCatch, useLoaderData } from 'remix'
 import MoviesPagination from '~/components/movies-pagination'
 import MoviesTable from '~/components/movies-table'
 
@@ -43,7 +38,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 
   return json(movies, {
     headers: {
-      'Cache-Control': 'private, max-age=600000',
+      'Cache-Control': 'public, max-age=600000',
     },
   })
 }

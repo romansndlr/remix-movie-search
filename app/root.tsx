@@ -1,14 +1,13 @@
 import {
   Link,
   Links,
-  LinksFunction,
   LiveReload,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
 } from 'remix'
-import type { MetaFunction } from 'remix'
+import type { MetaFunction, LinksFunction } from 'remix'
 import MoviesForm from './components/movies-form'
 
 export const meta: MetaFunction = () => ({
